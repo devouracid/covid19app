@@ -1,2 +1,2 @@
 # covid19app
-An application allowing users to search for the latest information about COVID-19 in their state and county. 
+JS functionality for county info. After state and county input, makes API call and returns current news, stats, and available contact information, including social media, address, telephone, and website.
