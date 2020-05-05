@@ -1,2 +1,2 @@
 # covid19app
-JS functionality for county info. After state and county input, makes API call and returns current news, stats, and available contact information, including social media, address, telephone, and website.
+An applicaton that allows user to input state and county information and receive current news and stats related to COVID-19. It also makes available local contact information, including social media pages, address, telephone, and website.
