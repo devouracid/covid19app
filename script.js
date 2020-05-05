@@ -1,16 +1,19 @@
 let box = document.getElementById("box")
+let div = document.getElementById("div")
+
+
+
 
 fetch("https://covid19api.io/api/v1/TestsInUS")
     .then(response => response.json())
     .then(datat =>{
-//API from : https://covid19-docs.chrismichael.now.sh/
-      const labels = datat.tests.table.map((value)=> value.DateCollected)
-      const lab = datat.tests.table.map((value)=> parseInt(value.USPublicHealthLabs) );
+        const labels = datat.tests.table.map((value)=> value.DateCollected);
+        const lab = datat.tests.table.map((value)=> value.USPublicHealthLabs);
 
+//API from : https://covid19-docs.chrismichael.now.sh/
 // the graphic library : 
 //https://jsbin.com/?html,console,output
-//https://www.chartjs.org/docs/latest/charts/line.html
-//https://bl.ocks.org/tbpgr/304782f57b6f0a0fb8e7
+
   function displayLineChart() {
     var data = {
         labels ,
@@ -39,3 +42,14 @@ fetch("https://covid19api.io/api/v1/TestsInUS")
  displayLineChart()
   })
   
+
+
+  fetch('http://newsapi.org/v2/top-headlines?'+'country=us&'+'apiKey=1db62fd2b8a1487698c4b04553cd2743')
+  .then(response => response.json())
+  .then(datas =>{
+  console.log('here !',datas.articles[0].title)
+  
+  const news = datas.articles.map((entry)=> datas.articles[0].title)
+  //console.log(news)
+  div.innerHTML= news
+  })  
