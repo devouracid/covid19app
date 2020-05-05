@@ -1,5 +1,7 @@
 let box = document.getElementById("box")
-let div = document.getElementById("div")
+let display_news = document.getElementById("display_news")
+let search_news = document.getElementById("search_news")
+let search_news_button = document.getElementById("search_news_button")
 
 
 fetch("https://covid19api.io/api/v1/TestsInUS")
@@ -11,8 +13,7 @@ fetch("https://covid19api.io/api/v1/TestsInUS")
 
 // the graphic library : 
 //https://jsbin.com/?html,console,output
-//https://www.chartjs.org/docs/latest/charts/line.html
-//https://bl.ocks.org/tbpgr/304782f57b6f0a0fb8e7
+
   function displayLineChart() {
     var data = {
         labels ,
@@ -42,14 +43,32 @@ fetch("https://covid19api.io/api/v1/TestsInUS")
   })
 
 
-  fetch('http://newsapi.org/v2/top-headlines?'+'country=us&'+'apiKey=1db62fd2b8a1487698c4b04553cd2743')
-  .then(response => response.json())
-  .then(datas =>{
-  console.log('here !',datas.articles[0].title)
-  
-  const news = datas.articles.map((entry)=> datas.articles[0].title)
-  //console.log(news)
-  div.innerHTML= news
-  })
-   
-  
+
+search_news_button.addEventListener("click",function(){
+
+    let inputValue = search_news.value
+    let api_key =  "1db62fd2b8a1487698c4b04553cd2743"
+
+    fetch(`http://newsapi.org/v2/top-headlines?country=${inputValue}&apiKey=${api_key}`)
+    .then(response => response.json())
+    .then(datas =>{
+
+    const news = datas.articles.map((entry)=> { 
+    
+        let newsItems = `<li>   <p>${entry.title}</p>
+                                <p>${entry.description} </p>
+                                <p>${entry.publishedAt} </p>
+                                <p>${entry.content} </p>
+                                <a href=${entry.url}> 
+                                <img class="news_images"  src=${entry.urlToImage} >
+                                <p>${entry.url}</p>
+                                </a>
+        
+                        </li>                   
+                       `
+      return  newsItems
+    })
+    
+    display_news.innerHTML= news.join(" ")
+    })
+})
