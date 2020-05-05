@@ -1,4 +1,6 @@
 let box = document.getElementById("box")
+let div = document.getElementById("div")
+
 
 fetch("https://covid19api.io/api/v1/TestsInUS")
     .then(response => response.json())
@@ -38,4 +40,16 @@ fetch("https://covid19api.io/api/v1/TestsInUS")
 
  displayLineChart()
   })
+
+
+  fetch('http://newsapi.org/v2/top-headlines?'+'country=us&'+'apiKey=1db62fd2b8a1487698c4b04553cd2743')
+  .then(response => response.json())
+  .then(datas =>{
+  console.log('here !',datas.articles[0].title)
+  
+  const news = datas.articles.map((entry)=> datas.articles[0].title)
+  //console.log(news)
+  div.innerHTML= news
+  })
+   
   
