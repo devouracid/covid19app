@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600");
+
+body {
+    background: linear-gradient(#e88079, transparent);
+    color: #444444;
+    /* animation: backgroundimage 5s infinite; */
+}
+
+body, input, select, textarea {
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+
+/* webkit is needed for Safari and Chrome */
+@keyframes backgroundimage {
+    33% {background-image: url("https://www.fda.gov/files/styles/featured_content_background_image/public/covid19-1600x900.jpg?itok=ZvOhgrde");}
+    66% {background-image: url("https://static01.nyt.com/images/2020/04/06/opinion/06Halazun/06Halazun-superJumbo.jpg");}
+    100% {background-image: url("https://jnj-content-lab.brightspotcdn.com/dims4/default/b19da52/2147483647/strip/true/crop/1440x666+0+0/resize/1440x666!/quality/90/?url=https%3A%2F%2Fjnj-content-lab.brightspotcdn.com%2F82%2F87%2F1f02f86a4ddfb68d44840e7d8cf5%2Flede-doctorfrontlineschina.jpg");}
+    
+}
+
+
+
+#main {
+    position: relative;
+    text-align: center;
+    top: 45%;
+}
+
+input[type=text] {
+    border: 1px transparent;
+    border-radius: 3rem;
+}
+
+input::placeholder {
+    text-align: center;
+}
+
+#textbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#statebox {
+    margin-right: 25px;
+}
+
+.btn {
+    padding: 3px;
+    border: 5px solid transparent;
+
+}
+
+.menu {
+    
+    background-color: #b3aead;
+}
+
+.menu a {
+    float: left;
+    display: block;
+    color: #444444;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+.menuText {
+
+}
+
+.menu a.icon {
+    float: left;
+    display: block;
+    color: #a2a7b0;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.menu a:hover:not(.icon) {
+    background-color: #e88079;
+    color: white;
+}
+
+@media screen and (min-width: 200px) {
+    .menu a {display: none;}
+    .menu a.icon {
+        top: 0;
+        left: 0;
+        display: block;}
+    .menu.responsive {position: relative;}
+    .menu.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;}
+    .menu.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+}
