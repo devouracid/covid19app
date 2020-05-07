@@ -3,15 +3,15 @@ let display_news = document.getElementById("display_news")
 let search_news = document.getElementById("search_news")
 let search_news_button = document.getElementById("search_news_button")
 
-
+// Fetching datas from US Public Health Laboratory Testing for COVID-19 API
+// https://covid19-docs.chrismichael.now.sh/
 fetch("https://covid19api.io/api/v1/TestsInUS")
     .then(response => response.json())
     .then(datat =>{
-//API from : https://covid19-docs.chrismichael.now.sh/
       const labels = datat.tests.table.map((value)=> value.DateCollected)
       const lab = datat.tests.table.map((value)=> parseInt(value.USPublicHealthLabs) );
 
-// the graphic library : 
+// Using jsbin graphic library to display Statistic Chart 
 //https://jsbin.com/?html,console,output
 
   function displayLineChart() {
@@ -42,19 +42,26 @@ fetch("https://covid19api.io/api/v1/TestsInUS")
  displayLineChart()
   })
 
-
-
-search_news_button.addEventListener("click",function(){
-
+//Making a function to fetch The World live top and breaking news headlines Datas
+function pressOrClick(){
     let inputValue = search_news.value
     let api_key =  "1db62fd2b8a1487698c4b04553cd2743"
+
+//To Clear The Text Box After Typing
+if(!inputValue){
+    return 
+}
+// if (inputValue == null || inputValue == undefined){}
 
     fetch(`http://newsapi.org/v2/top-headlines?country=${inputValue}&apiKey=${api_key}`)
     .then(response => response.json())
     .then(datas =>{
 
+// To Clear the Text Box After Typing        
+search_news.value = ""
+
     const news = datas.articles.map((entry)=> { 
-    
+        
         let newsItems = `<li>   <p>${entry.title}</p>
                                 <p>${entry.description} </p>
                                 <p>${entry.publishedAt} </p>
@@ -70,5 +77,20 @@ search_news_button.addEventListener("click",function(){
     })
     
     display_news.innerHTML= news.join(" ")
+
     })
+}
+
+//Calling a pressOrClick() functin when clicking the button 
+search_news_button.addEventListener("click",function(){
+     pressOrClick()
+   
 })
+
+//Calling a pressOrClick() functin when Pressing Enter Key
+search_news.addEventListener("keypress",function(event){
+    if(event.keyCode===13){
+        pressOrClick()
+    }      
+})
+
